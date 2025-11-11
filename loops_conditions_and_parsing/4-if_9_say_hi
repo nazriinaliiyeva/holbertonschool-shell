@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+c=0
+while [ "$c" -lt 11 ]
+do
+	if [ "$c" = 9 ]
+	then
+		echo "Hi"
+	else
+		echo "Best School"
+	fi
+	((c++))
+done
