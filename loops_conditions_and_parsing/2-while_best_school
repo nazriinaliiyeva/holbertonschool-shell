@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #display Best School 10 times
 c=0
-while [ $c -lt 10 ]
+while [ "$c" -lt 10 ]
 do
 	echo "Best School"
-	let c=c+1
+	((c++))
 done
