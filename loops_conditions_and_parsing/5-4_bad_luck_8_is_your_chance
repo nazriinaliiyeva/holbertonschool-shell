@@ -6,11 +6,11 @@ do
 	if [ "$c" -eq 4 ]
 	then
 		echo "bad luck"
-	if [ "$c" -eq 8 ]
+	elif [ "$c" -eq 8 ]
         then
 		echo "good luck"
 	else 
 		echo "Best School"
 	fi
 	((c++))
-done	
+done
