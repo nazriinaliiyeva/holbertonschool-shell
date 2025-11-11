@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#if say hi loop
 c=0
 while [ "$c" -lt 11 ]
 do
