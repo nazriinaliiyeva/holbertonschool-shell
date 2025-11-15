@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#process
 PID_FILE="/var/run/myscript.pid"
 echo $$ > "$PID_FILE"
 trap 'echo "Y U no love me?!";' SIGINT
