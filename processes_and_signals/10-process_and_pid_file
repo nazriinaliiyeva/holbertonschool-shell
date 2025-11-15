@@ -1,12 +1,37 @@
 #!/usr/bin/env bash
-#process
+# Creates a PID file and handles signals as required
+
 PID_FILE="/var/run/myscript.pid"
-echo $$ > "$PID_FILE"
-trap 'echo "Y U no love me?!";' SIGINT
-trap 'echo "I hate the kill command"; rm -f "$PID_FILE"; exit 0' SIGTERM
-trap 'rm -f "$PID_FILE"; exit 0' SIGQUIT
+
+# If we cannot write /var/run, fall back to /tmp
+if ! echo $$ > "$PID_FILE" 2>/dev/null; then
+    PID_FILE="/tmp/myscript.pid"
+    echo $$ > "$PID_FILE"
+fi
+
+# Signal handlers
+sigterm_handler() {
+    echo "I hate the kill command"
+    rm -f "$PID_FILE"
+    exit 0
+}
+
+sigint_handler() {
+    echo "Y U no love me?!"
+}
+
+sigquit_handler() {
+    rm -f "$PID_FILE"
+    exit 0
+}
+
+trap sigterm_handler SIGTERM
+trap sigint_handler SIGINT
+trap sigquit_handler SIGQUIT
+
 while true; do
     echo "To infinity and beyond"
     sleep 2
 done
+
 
